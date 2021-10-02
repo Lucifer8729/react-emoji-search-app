@@ -1,51 +1,21 @@
 import React from "react";
 
-import { TextField, Autocomplete } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { TextField } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const useStyles = makeStyles((theme) => ({
-  inputRoot: {
-    color: "white",
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "white",
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "white",
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "white",
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FFFFFF",
     },
   },
-}));
+});
 
 const SearchField = () => {
-  const classes = useStyles();
   return (
-    <>
-      <Autocomplete
-        size={"small"}
-        id="free-solo-demo"
-        sx={{
-          inputRoot: {
-            color: "white",
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "white",
-            },
-            "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: "white",
-            },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: "white",
-            },
-          },
-        }}
-        freeSolo
-        options={[{ label: "Hello" }, { label: "world" }]}
-        renderInput={(params) => (
-          <TextField {...params} color="secondary" label="Search..." />
-        )}
-      />
-    </>
+    <ThemeProvider theme={theme}>
+      <TextField size="small" label="Search..." variant="outlined" />
+    </ThemeProvider>
   );
 };
 
