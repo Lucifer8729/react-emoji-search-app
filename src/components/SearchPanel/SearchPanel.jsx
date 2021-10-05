@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 
 import SearchField from "../SearchField/SearchField";
+import TagsList from "../TagsList/TagsList";
 
 const SearchPanel = () => {
   return (
@@ -16,6 +17,7 @@ const SearchPanel = () => {
       <Container>
         <Typography variant="h2">EMOJI</Typography>
         <SearchField />
+        <TagsList />
       </Container>
     </Box>
   );
