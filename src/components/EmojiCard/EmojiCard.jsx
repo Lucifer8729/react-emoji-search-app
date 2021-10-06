@@ -1,16 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { copyEmoji } from "../../store/actions";
 
 import { Card, CardHeader, IconButton } from "@mui/material";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 import "./styles.css";
 
 const EmojiCard = (props) => {
   const [shadow, setShadow] = React.useState(1);
+  const dispatch = useDispatch();
 
-  const onMouseOver = () => setShadow(3);
+  const onMouseOver = () => setShadow(5);
   const onMouseOut = () => setShadow(1);
   const { char, name, group } = props;
+
+  const copyToClipboard = () => {
+    dispatch(copyEmoji(char));
+  };
 
   return (
     <Card
@@ -22,8 +29,8 @@ const EmojiCard = (props) => {
       <CardHeader
         avatar={<div className="emoji-container">{char}</div>}
         action={
-          <IconButton>
-            <FileCopyIcon />
+          <IconButton onClick={copyToClipboard}>
+            <ContentCopyIcon sx={{ color: "#67b7f7" }} />
           </IconButton>
         }
         title={name}
