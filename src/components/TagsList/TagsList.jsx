@@ -5,6 +5,7 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import { Box, Chip, Typography, Divider } from "@mui/material";
+import TAGS_LIST from "./TAGS_LIST";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -42,7 +43,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-const tags = ["happy", "sad", "angry", "sleepy"];
+// const tags = ["happy", "sad", "angry", "sleepy"];
 
 const TagsList = () => {
   const [expanded, setExpanded] = React.useState("");
@@ -63,7 +64,7 @@ const TagsList = () => {
   };
 
   return (
-    <Box mt={3}>
+    <Box mt={3} mb={3}>
       <Accordion
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
@@ -88,7 +89,7 @@ const TagsList = () => {
               <Divider sx={{ mb: 1 }} />
             </>
           ) : null}
-          {tags.map((tag, i) => (
+          {TAGS_LIST.map((tag, i) => (
             <Chip
               key={i}
               sx={{ mr: 1, mb: 1 }}

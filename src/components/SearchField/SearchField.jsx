@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { searchEmoji } from "../../store/actions/index";
@@ -43,21 +43,28 @@ const SearchField = (props) => {
     setInput(text);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchEmoji(last_item, 25, input, list));
+  };
+
   // useEffect(() => {
   //   dispatch(searchEmoji(last_item, 25, input, list));
   // }, [input, dispatch, last_item, list]);
 
   return (
     <ThemeProvider theme={theme}>
-      <TextField
-        sx={{ width: "100%" }}
-        size="small"
-        label="Search"
-        variant="outlined"
-        InputLabelProps={{ className: classes.multilineColor }}
-        value={input}
-        onChange={handleChange}
-      />
+      <form onSubmit={handleSubmit}>
+        <TextField
+          sx={{ width: "100%" }}
+          size="small"
+          label="Search"
+          variant="outlined"
+          InputLabelProps={{ className: classes.multilineColor }}
+          value={input}
+          onChange={handleChange}
+        />
+      </form>
     </ThemeProvider>
   );
 };
