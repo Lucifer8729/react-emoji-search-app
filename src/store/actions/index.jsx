@@ -10,3 +10,8 @@ export const copyEmoji = (emoji) => ({
   type: types.COPY_EMOJI,
   payload: utils.copyEmoji(emoji),
 });
+
+export const searchEmoji = (...args) => ({
+  type: types.EMOJI_SEARCH,
+  payload: utils.searchEmoji(...args),
+});

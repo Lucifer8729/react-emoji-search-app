@@ -22,6 +22,13 @@ const emojiReducer = (state = INITIAL_STATE, action) => {
         ...action.payload,
       };
 
+    case types.EMOJI_SEARCH:
+      return {
+        ...state,
+        emoji: [...action.payload.list],
+        itemCount: action.payload.i,
+      };
+
     default:
       return state;
   }

@@ -18,3 +18,17 @@ export const copyEmoji = (emoji) => {
 
   return { copiedEmoji: emoji };
 };
+
+export const searchEmoji = (curr, interval = 25, searchKey, curr_list) => {
+  const list = [];
+  let i = 0;
+  for (i = curr; i < curr + interval && i < 4589; ++i) {
+    list.push(emoji[i]);
+  }
+  curr_list.push(...list);
+
+  const filteredList = curr_list.filter((emoji) =>
+    emoji.name.includes(searchKey.toLowerCase())
+  );
+  return { list: filteredList, i: i };
+};
