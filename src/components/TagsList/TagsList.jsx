@@ -1,4 +1,7 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { searchByTags } from "../../store/actions";
+
 import { styled } from "@mui/material/styles";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
@@ -48,6 +51,9 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 const TagsList = () => {
   const [expanded, setExpanded] = React.useState("");
   const [selectedTags, setSelectedTags] = React.useState([]);
+  const list = useSelector((state) => state.emojis.emoji);
+  const last_item = useSelector((state) => state.emojis.itemCount);
+  const dispatch = useDispatch();
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -60,8 +66,13 @@ const TagsList = () => {
   const handleClick = (tag) => {
     if (!selectedTags.find((val) => tag === val)) {
       setSelectedTags((prevValue) => [...prevValue, tag]);
+      // dispatch(searchByTags(last_item, 25, selectedTags, list));
     }
   };
+
+  React.useEffect(() => {
+    dispatch(searchByTags(last_item, 25, selectedTags, list));
+  }, [selectedTags]);
 
   return (
     <Box mt={3} mb={3}>

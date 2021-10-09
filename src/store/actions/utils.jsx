@@ -19,7 +19,7 @@ export const loadMoreEmoji = (curr, interval = 25, searchKey = "") => {
     }
   } else {
     for (i = curr; list.length < interval && i < 4589; ++i) {
-      console.log(i);
+      // console.log(i);
       if (emoji[i].name.includes(searchKey.toLowerCase())) {
         list.push(emoji[i]);
       }
@@ -55,4 +55,23 @@ export const searchEmoji = (curr, interval = 25, searchKey, curr_list) => {
   }
 
   return { list: filteredList, i: i, searchItem: searchKey };
+};
+
+export const searchByTags = (curr, interval = 25, tagList, curr_list) => {
+  const list = [];
+  let i = 0;
+  for (i = curr; i < curr + interval && i < 4589; ++i) {
+    list.push(emoji[i]);
+  }
+
+  curr_list.push(...list);
+  console.log(curr_list, tagList);
+
+  const filteredList = curr_list.filter((emoji) =>
+    tagList.includes(emoji.subgroup)
+  );
+
+  console.log(filteredList);
+
+  return { list: filteredList, i: i };
 };

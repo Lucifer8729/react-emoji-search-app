@@ -15,3 +15,8 @@ export const searchEmoji = (...args) => ({
   type: types.EMOJI_SEARCH,
   payload: utils.searchEmoji(...args),
 });
+
+export const searchByTags = (...args) => ({
+  type: types.FILTER_BY_TAGS,
+  payload: utils.searchByTags(...args),
+});
