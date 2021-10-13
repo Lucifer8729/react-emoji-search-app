@@ -70,9 +70,11 @@ const TagsList = () => {
     }
   };
 
-  React.useEffect(() => {
-    dispatch(searchByTags(last_item, 25, selectedTags, list));
-  }, [selectedTags]);
+  // React.useEffect(() => {
+  //   if (selectedTags.length !== 0) {
+  //     dispatch(searchByTags(last_item, 25, selectedTags, list));
+  //   }
+  // }, [selectedTags, dispatch, last_item, list]);
 
   return (
     <Box mt={3} mb={3}>

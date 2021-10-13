@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   itemCount: 0,
   copiedEmoji: "",
   searchItem: "",
+  tags: [],
 };
 
 const emojiReducer = (state = INITIAL_STATE, action) => {
@@ -36,6 +37,7 @@ const emojiReducer = (state = INITIAL_STATE, action) => {
         ...state,
         emoji: [...action.payload.list],
         itemCount: action.payload.i,
+        tags: action.payload.tags,
       };
 
     default:

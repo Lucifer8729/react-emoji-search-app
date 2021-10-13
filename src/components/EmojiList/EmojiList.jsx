@@ -16,6 +16,7 @@ const EmojiList = () => {
   const list = useSelector((state) => state.emojis.emoji);
   const last_item = useSelector((state) => state.emojis.itemCount);
   const searchKey = useSelector((state) => state.emojis.searchItem);
+  const taglist = useSelector((state) => state.emojis.tags);
 
   const dispatch = useDispatch();
   // console.log(list);
@@ -27,7 +28,9 @@ const EmojiList = () => {
   }, [dispatch]);
 
   const handleLoading = () => {
-    dispatch(loadEmoji(last_item, 25, searchKey));
+    taglist.length !== 0
+      ? dispatch(loadEmoji(last_item, 25, "", taglist))
+      : dispatch(loadEmoji(last_item, 25, searchKey));
   };
 
   return (

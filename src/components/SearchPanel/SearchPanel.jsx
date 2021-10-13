@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import SearchField from "../SearchField/SearchField";
-import TagsList from "../TagsList/TagsList";
+// import TagsList from "../TagsList/TagsList";
 
 const SearchPanel = () => {
   return (
@@ -12,13 +12,16 @@ const SearchPanel = () => {
         height: "100vh",
         overflowY: "auto",
         bgcolor: "#42a5f5",
+        pl: 2,
+        pr: 2,
+        pt: 4,
       }}
     >
-      <Container>
-        <Typography variant="h2">EMOJI</Typography>
-        <SearchField />
-        <TagsList />
-      </Container>
+      <Typography variant="h4" sx={{ color: "white", mb: 2 }}>
+        Emojipedia :
+      </Typography>
+      <SearchField />
+      {/* <TagsList /> */}
     </Box>
   );
 };

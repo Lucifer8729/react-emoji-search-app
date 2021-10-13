@@ -1,7 +1,12 @@
 import emoji from "emoji.json";
 import { showToast } from "../../components/EmojiList/utils";
 
-export const loadMoreEmoji = (curr, interval = 25, searchKey = "") => {
+export const loadMoreEmoji = (
+  curr,
+  interval = 25,
+  searchKey = "",
+  tagList = []
+) => {
   // for getting tags
 
   // const tags = [];
@@ -11,7 +16,7 @@ export const loadMoreEmoji = (curr, interval = 25, searchKey = "") => {
   // const tag = [...new Set(tags)];
   // console.log(tag);
 
-  const list = [];
+  let list = [];
   let i = 0;
   if (!searchKey) {
     for (i = curr; i < curr + interval && i < 4589; ++i) {
@@ -25,6 +30,15 @@ export const loadMoreEmoji = (curr, interval = 25, searchKey = "") => {
       }
     }
   }
+
+  // if (tagList.length !== 0) {
+  //   list = [];
+  //   for (i = curr; list.length < interval && i < 4589; ++i) {
+  //     if (tagList.includes(emoji[i].subgroup)) {
+  //       list.push(emoji[i]);
+  //     }
+  //   }
+  // }
 
   return { list: list, i: i };
 };
@@ -49,7 +63,8 @@ export const searchEmoji = (curr, interval = 25, searchKey, curr_list) => {
     emoji.name.includes(searchKey.toLowerCase())
   );
 
-  if (filteredList.length === 0) {
+  const n = filteredList.length;
+  if (filteredList.length === 0 || filteredList.length === n) {
     const newList = loadMoreEmoji(0, interval, searchKey);
     return { list: newList.list, i: newList.i, searchItem: searchKey };
   }
@@ -60,6 +75,7 @@ export const searchEmoji = (curr, interval = 25, searchKey, curr_list) => {
 export const searchByTags = (curr, interval = 25, tagList, curr_list) => {
   const list = [];
   let i = 0;
+  const n = curr_list.length;
   for (i = curr; i < curr + interval && i < 4589; ++i) {
     list.push(emoji[i]);
   }
@@ -71,7 +87,12 @@ export const searchByTags = (curr, interval = 25, tagList, curr_list) => {
     tagList.includes(emoji.subgroup)
   );
 
+  if (filteredList.length === n) {
+    const newList = loadMoreEmoji(0, interval, "", tagList);
+    return { list: newList.list, i: newList.i, tags: true };
+  }
+
   console.log(filteredList);
 
-  return { list: filteredList, i: i };
+  return { list: filteredList, i: i, tags: tagList };
 };

@@ -5,7 +5,8 @@ import { searchEmoji } from "../../store/actions/index";
 
 import { TextField } from "@mui/material";
 import { withStyles } from "@mui/styles";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -31,6 +32,32 @@ const styles = (theme) => ({
   },
 });
 
+const CssTextField = styled(TextField)({
+  //   ".MuiInputLabel-root": {
+  //     color: "red",
+  //   },
+  "& label.Mui-focused": {
+    color: "white",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "white",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "white",
+    },
+    "&:hover fieldset": {
+      borderColor: "white",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "white",
+    },
+  },
+  "& .MuiInputBase-root": {
+    color: theme.palette.primary.main,
+  },
+});
+
 const SearchField = (props) => {
   const [input, setInput] = useState("");
   const list = useSelector((state) => state.emojis.emoji);
@@ -53,19 +80,17 @@ const SearchField = (props) => {
   // }, [input, dispatch, last_item, list]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          sx={{ width: "100%" }}
-          size="small"
-          label="Search"
-          variant="outlined"
-          InputLabelProps={{ className: classes.multilineColor }}
-          value={input}
-          onChange={handleChange}
-        />
-      </form>
-    </ThemeProvider>
+    <form onSubmit={handleSubmit}>
+      <CssTextField
+        sx={{ width: "100%" }}
+        size="small"
+        label="Search"
+        variant="outlined"
+        InputLabelProps={{ className: classes.multilineColor }}
+        value={input}
+        onChange={handleChange}
+      />
+    </form>
   );
 };
 
