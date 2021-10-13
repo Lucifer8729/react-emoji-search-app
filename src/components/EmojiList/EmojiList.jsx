@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { CircularProgress, Grid, IconButton } from "@mui/material";
+import { CircularProgress, Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -64,7 +64,13 @@ const EmojiList = () => {
               textAlign: "center",
             }}
           >
-            <CircularProgress />
+            {searchKey.length === 0 ? (
+              <CircularProgress />
+            ) : (
+              <Typography variant="body1">
+                No reference found related to the current search.
+              </Typography>
+            )}
           </Grid>
         )}
       </Grid>
