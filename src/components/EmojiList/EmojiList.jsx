@@ -23,7 +23,7 @@ const EmojiList = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(loadEmoji(0, 25));
+      dispatch(loadEmoji(0, 50));
     }, 100);
   }, [dispatch]);
 
