@@ -40,7 +40,7 @@
 
 <img src=https://user-images.githubusercontent.com/72292326/137153102-f6042da6-2e4e-4be2-992f-44c5458bea65.png />
 
-A simple emoji search app. You look up any emoji you and can copy it with a simple click and paste it anywhere.
+A simple emoji search app. You can look up any emoji and you can copy it with a simple click and paste it anywhere.
 
 
 
